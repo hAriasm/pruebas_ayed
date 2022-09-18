@@ -40,14 +40,12 @@ async function loadData(){
             if(elements.length < 2)
                 continue;
             var file = __dirname + "/data/" + elements[0];
-            //console.log(file);
             // in the variable X, we will store the HOG of the pictures
             var image = await Image.load(file);
             image = await image.scale({width:100, height:100});
             var descriptor = hog.extractHOG(image, options_hog);
             X_train.push(descriptor);
             Y_train.push(elements[1]);
-
         }
 
         kernel = new Kernel('polynomial', {degree: 3, scale: 1/X_train.length});
@@ -70,6 +68,7 @@ async function loadData(){
             Y_test.push(elements[1]);
         }
         K_test = kernel.compute(X_test, X_train).addColumn(0, range(1, X_test.length + 1));
+        console.log(K_test);
     }
 
     await loadTrainingSet();
@@ -81,8 +80,9 @@ loadData().then(function(){
     // Begin of the classification
 
     var classifier = new SVM(options);
-
+   
     classifier.train(K_train, Y_train);
+    console.log(classifier);
     test();
 
     function test() {
@@ -106,6 +106,8 @@ loadData().then(function(){
     fs.writeFileSync('serialized.txt', classifier.serializeModel()); // change this line if you use sth else than SVM
 
 });
+//test();
+
 //console.log(K_test);
 //var gradients = hog.gradients(image);
 //console.log(gradients);
