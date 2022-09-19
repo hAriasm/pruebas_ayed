@@ -1,4 +1,4 @@
-var Canvas = require("canvas"),
+var canvas = require("canvas"),
     fs = require("fs"),
     hog = require("../hog");
 
@@ -39,7 +39,7 @@ function drawThings(canvas) {
 }
 
 function cloneCanvas(canvas) {
-  var c2 = new Canvas(canvas.width, canvas.height);
+  var c2 = new canvas(canvas.width, canvas.height);
   var imageData = canvas.getContext("2d").getImageData(0, 0, canvas.width, canvas.height);
   c2.getContext("2d").putImageData(imageData, 0, 0);
 
@@ -50,10 +50,10 @@ function drawImgToCanvas(file, callback) {
   fs.readFile(file, function(err, data) {
     if (err) throw err;
 
-    var img = new Canvas.Image();
+    var img = new canvas.Image();
     img.src = new Buffer(data, 'binary');
 
-    var canvas = new Canvas(img.width, img.height);
+    var canvas = new canvas(img.width, img.height);
     var ctx = canvas.getContext('2d');
     ctx.drawImage(img, 0, 0, img.width, img.height);
 

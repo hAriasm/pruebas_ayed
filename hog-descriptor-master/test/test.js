@@ -1,6 +1,6 @@
 var fs = require("fs"),
     assert = require("assert"),
-    Canvas = require("canvas");
+    canvas = require("canvas");
     hog = require("../hog");
 
 var canvas = drawImgToCanvasSync(__dirname + "/bugzilla.png");
@@ -25,10 +25,10 @@ assert.deepEqual(descriptor, require("./expected.json"));
 
 
 function dataToCanvas(imagedata) {
-  img = new Canvas.Image();
+  img = new canvas.Image();
   img.src = new Buffer(imagedata, 'binary');
 
-  var canvas = new Canvas(img.width, img.height);
+  var canvas = new canvas(img.width, img.height);
   var ctx = canvas.getContext('2d');
   ctx.patternQuality = "best";
 

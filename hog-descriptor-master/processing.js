@@ -5,6 +5,7 @@ var processing = {
       var canvas = imagedata;
       var context = canvas.getContext("2d");
       imagedata = context.getImageData(0, 0, canvas.width, canvas.height);
+      console.log(imagedata);
     }
 
     var lumas = new Array(imagedata.height);
