@@ -3,7 +3,7 @@ var fs = require("fs"),
     canvas = require("canvas");
     hog = require("../hog");
 
-var canvas = drawImgToCanvasSync(__dirname + "/bugzilla.png");
+var canvas = drawImgToCanvasSync(__dirname + "/beachball.jpg");
 
 var descriptor;
 
